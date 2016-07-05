@@ -3,8 +3,15 @@ require 'benchmark'
 module Q00
   module_function
 
+  @memo = {}
+
   def run
-    'answer'
+    return @memo[n] if @memo.has_key?(n)
+    if (n == 0) || (n == 1) then
+      @memo[n] = 1
+    else
+      @memo[n] = run(n - 1) + run(n - 2)
+    end
   end
 end
 
